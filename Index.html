@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rolagem Automática Infinita</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f4f4f4;
+            overflow-x: hidden;
+        }
+        .content {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .text-block {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #ffffff;
+            border-left: 4px solid #007BFF;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="content" id="content">
+        <h2>Rolagem Automática Infinita</h2>
+        <p>A página rolará automaticamente e adicionará novos blocos de texto continuamente.</p>
+    </div>
+
+    <script>
+        // Função para rolagem automática
+        function autoScroll() {
+            window.scrollBy(0, 1); // Move 1px para baixo
+            setTimeout(autoScroll, 20); // Repete a cada 20ms
+        }
+
+        // Função para adicionar conteúdo dinamicamente
+        function addContent() {
+            const content = document.getElementById("content");
+            const block = document.createElement("div");
+            block.className = "text-block";
+            block.innerText = "Novo conteúdo carregado automaticamente...";
+            content.appendChild(block);
+        }
+
+        // Adiciona novos blocos de texto conforme o usuário rola para baixo
+        window.onscroll = function() {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
+                addContent();
+            }
+        };
+
+        // Inicia a rolagem automática
+        autoScroll();
+    </script>
+</body>
+</html>
